@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>717の日常</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: linear-gradient(135deg,#f0f4ff,#fff0f6);
+      color: #1f2937;
+      overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
+    }
+    body.dark {
+      background: linear-gradient(135deg,#0f111b,#020617);
+      color: #e5e7eb;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .image-container {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .image-container:hover { transform: scale(1.05) rotate(-3deg); }
+    .hero h1 {
+      font-size: 3.2rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    .hero h1 span { color: #6366f1; }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 560px;
+      line-height: 1.8;
+      opacity: 0.9;
+      margin-bottom: 5px;
+    }
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-weight: 500;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .btn-primary { background: #6366f1; color: #fff; }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.05); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.8);
+      color: #374151;
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,1); }
+    .section {
+      padding: 100px 20px;
+      max-width: 960px;
+      margin: auto;
+    }
+    .card {
+      background: rgba(255,255,255,0.8);
+      border-radius: 30px;
+      padding: 50px;
+      margin-bottom: 50px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    body.dark .card { background: rgba(30,41,59,0.75); }
+    .card.show { opacity: 1; transform: translateY(0); }
+    .card h2 { font-size: 2rem; color: #4f46e5; margin-bottom: 15px; }
+    footer { text-align: center; padding: 60px 20px; font-size: 0.95rem; opacity: 0.7; }
+    #themeToggle {
+      position: fixed; top: 20px; right: 20px;
+      border: none; border-radius: 999px;
+      padding: 10px 14px; font-size: 1.2rem; cursor: pointer;
+      background: rgba(255,255,255,0.8); backdrop-filter: blur(6px);
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    #themeToggle:hover { transform: scale(1.1); }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <button id="themeToggle" aria-label="toggle theme">🌙</button>
+    <div class="image-container">
+      <img src="https://devcat.neocities.org/img/logo1.png" alt="717 Logo">
+    </div>
+    <h1>717<span>の日常</span></h1>
+    <p>專屬於 717 班的紀錄頁面，保存每一個被留下的片段。</p>
+    <p style="font-size:0.95rem;opacity:.75;">創立於 2025 / 12 / 19</p>
+    <div class="buttons">
+      <a class="btn btn-primary" href="https://www.instagram.com/class.717._.life/" target="_blank">前往 717 IG</a>
+      <a class="btn btn-secondary" href="https://xinzhuangclass17.lovestoblog.com/submit/" target="_blank">我要投稿</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="card">
+      <h2>🤍 這個帳號在做什麼</h2>
+      <p>保存屬於 717 班的畫面與回憶，不刻意分類，只留下真實紀錄。</p>
+    </div>
+
+    <div class="card">
+      <h2>🗂 內容的方式</h2>
+      <p>可能是一張照片、一段影片或一個被記錄的瞬間，不要求完整或格式，只要真實。</p>
+    </div>
+
+    <div class="card">
+      <h2>📍 如果你是 717 的一份子</h2>
+      <p>追蹤帳號或投稿都可以，這裡沒有主角，每個人都是共同的一部分。</p>
+    </div>
+  </section>
+
+  <footer>© 717 班｜717の日常<br>青春一次，回憶一輩子</footer>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('show'); });
+    }, { threshold: 0.2 });
+    cards.forEach(card => observer.observe(card));
+
+    const toggle = document.getElementById('themeToggle');
+    toggle.onclick = () => {
+      document.body.classList.toggle('dark');
+      toggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    };
+  </script>
+
+</body>
+</html>
